@@ -97,7 +97,7 @@ func TestDdl(t *testing.T) {
 
 func TestNumerify(t *testing.T) {
 	type args struct {
-		format string
+		format []string
 	}
 	tests := []struct {
 		name string
@@ -105,13 +105,34 @@ func TestNumerify(t *testing.T) {
 		want string
 	}{
 		// TODO: Add test cases.
-		{name:"1",args:args{format:"###-##"},want:"123"},
+		{name: "1", args: args{}, want: ""},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := Numerify(tt.args.format)
-			t.Log(got)
+			if got := Numerify(tt.args.format...); got != tt.want {
+				t.Errorf("Numerify() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
 
+func TestLexify(t *testing.T) {
+	type args struct {
+		format []string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		// TODO: Add test cases.
+		{name: "1", args: args{}, want: ""},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := Lexify(tt.args.format...); got != tt.want {
+				t.Errorf("Lexify() = %v, want %v", got, tt.want)
+			}
 		})
 	}
 }

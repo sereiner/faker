@@ -1,7 +1,12 @@
 package faker
 
-import "github.com/sereiner/faker/person"
+import (
+	"bytes"
+	"sync"
+)
 
-func NewPerson() person.IPerson {
-	return &person.Persons{}
+var BufferPool = &sync.Pool{
+	New: func() interface{} {
+		return bytes.NewBuffer(make([]byte, 256))
+	},
 }

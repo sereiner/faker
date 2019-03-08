@@ -1,4 +1,4 @@
-package phoneNumber
+package phone
 
 import "testing"
 
@@ -8,7 +8,7 @@ func TestPhoneNumber(t *testing.T) {
 		want string
 	}{
 		// TODO: Add test cases.
-		{name:"1",want:"123"},
+		{name: "1", want: "123"},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

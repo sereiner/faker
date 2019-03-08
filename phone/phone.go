@@ -1,4 +1,4 @@
-package phoneNumber
+package phone
 
 import "github.com/sereiner/faker/base"
 

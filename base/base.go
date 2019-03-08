@@ -11,17 +11,17 @@ const Rex = `[\w]+`
 
 const p = `#`
 
-//RandomDigit return a random number between 0 and 9
+//RandomDigit 返回 0 到 9 之间随机数
 func RandomDigit() int {
 	return RandInt(0, 10)
 }
 
-//RandomDigitNotNull return a random number between 1 and 9
+//RandomDigitNotNull 返回 1 到 9 之间随机数
 func RandomDigitNotNull() int {
 	return RandInt(1, 10)
 }
 
-//RandomDigitNot .
+//RandomDigitNot 返回一个 0 到 9 之间的随机数,但是不包括 except
 func RandomDigitNot(except int) int {
 	res := NumberBetween(0, 9)
 	if res >= except {
@@ -30,19 +30,19 @@ func RandomDigitNot(except int) int {
 	return res
 }
 
-//RandomFloat32 .
+//RandomFloat32 返回一个 float32
 func RandomFloat32() float32 {
 	rand.Seed(time.Now().UnixNano())
 	return rand.Float32()
 }
 
-//RandomFloat64 .
+//RandomFloat64 返回一个 float64
 func RandomFloat64() float64 {
 	rand.Seed(time.Now().UnixNano())
 	return rand.Float64()
 }
 
-//RandInt .
+//RandInt 返回 min 到 max 之间的随机数
 func RandInt(min, max int) int {
 	if min >= max || max == 0 {
 		return max
@@ -89,10 +89,31 @@ func RandomElement(a []string) string {
 	return RandomElements(a, 1)[0]
 }
 
-func Numerify(format string) string{
+// Numerify 根据填充字符串,返回一个随机数,默认返回 5位
+func Numerify(format ...string) string {
 	re, _ := regexp.Compile(p)
-	res := re.ReplaceAllStringFunc(format, func(s string) string {
+	if len(format) > 0 && format[0] != "" {
+		res := re.ReplaceAllStringFunc(format[0], func(s string) string {
+			return strconv.Itoa(RandomDigit())
+		})
+		return res
+	}
+	return re.ReplaceAllStringFunc("#####", func(s string) string {
 		return strconv.Itoa(RandomDigit())
 	})
-	return res
+
+}
+
+// Lexify 根据填充字符串,返回一个随机字符串,默认返回 5位
+func Lexify(format ...string) string {
+	re, _ := regexp.Compile(p)
+	if len(format) > 0 && format[0] != "" {
+		res := re.ReplaceAllStringFunc(format[0], func(s string) string {
+			return string(RandInt(65, 122))
+		})
+		return res
+	}
+	return re.ReplaceAllStringFunc("#####", func(s string) string {
+		return string(RandInt(65, 122))
+	})
 }
