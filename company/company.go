@@ -49,5 +49,5 @@ func CompanySuffix() string {
 
 // JobTitle 生成一个工作名称
 func JobTitle() string {
-	return ""
+	return base.RandomElement(jobTitleFormat)
 }
