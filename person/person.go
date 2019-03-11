@@ -7,21 +7,25 @@ import (
 	"github.com/sereiner/faker/base"
 )
 
+// GENDER_MALE 男性
 const GENDER_MALE = "male"
+
+// GENDER_FEMALE 女性
 const GENDER_FEMALE = "female"
 
-type IPerson interface {
-	Name(gender string) string
-	FirstName(gender string) string
-	FirstNameFemale() string
-	FirstNameMale() string
-	LastName() string
-	Title(gender string) (title string)
-	TitleMale() string
-	TitleFemale() string
-	Suffix() string
-}
+var globle *Persons
+
+// Persons .
 type Persons struct {
+}
+
+func init() {
+	globle = &Persons{}
+}
+
+//Name .
+func Name(gender string) string {
+	return globle.Name(gender)
 }
 
 func (p *Persons) Name(gender string) string {
@@ -47,6 +51,9 @@ func (p *Persons) parse(format string) (str string) {
 	}
 	return str
 }
+func FirstName(gender string) string {
+	return globle.FirstName(gender)
+}
 
 func (p *Persons) FirstName(gender string) string {
 	var name string
@@ -61,16 +68,31 @@ func (p *Persons) FirstName(gender string) string {
 	return name
 }
 
+func FirstNameMale() string {
+	return globle.FirstNameMale()
+}
 func (p *Persons) FirstNameMale() string {
 	return base.RandomElement(firstNameMale)
+}
+
+func FirstNameFemale() string {
+	return globle.FirstNameFemale()
 }
 
 func (p *Persons) FirstNameFemale() string {
 	return base.RandomElement(firstNameFemale)
 }
 
+func LastName() string {
+	return globle.LastName()
+}
+
 func (p *Persons) LastName() string {
 	return base.RandomElement(lastName)
+}
+
+func Title(gender string) (title string) {
+	return globle.Title(gender)
 }
 
 func (p *Persons) Title(gender string) (title string) {
@@ -86,12 +108,24 @@ func (p *Persons) Title(gender string) (title string) {
 	return title
 }
 
+func TitleMale() string {
+	return globle.TitleMale()
+}
+
 func (p *Persons) TitleMale() string {
 	return base.RandomElement(titleMale)
 }
 
+func TitleFemale() string {
+	return globle.TitleFemale()
+}
+
 func (p *Persons) TitleFemale() string {
 	return base.RandomElement(titleFemale)
+}
+
+func Suffix() string {
+	return globle.Suffix()
 }
 
 func (p *Persons) Suffix() string {
