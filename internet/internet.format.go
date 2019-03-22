@@ -1,7 +1,9 @@
 package internet
 
 var freeEmailDomain = []string{"gmail.com", "yahoo.com", "hotmail.com"}
+var domainName = []string{"gmail.com", "yahoo.com", "hotmail.com"}
 var tld = []string{"com", "com", "com", "com", "com", "com", "biz", "info", "net", "org"}
+
 var userNameFormats = []string{
 	"{{lastName}}.{{firstName}}",
 	"{{firstName}}.{{lastName}}",
@@ -9,7 +11,6 @@ var userNameFormats = []string{
 	"?{{lastName}}",
 }
 var emailFormats = []string{
-	"{{userName}}@{{domainName}}",
 	"{{userName}}@{{freeEmailDomain}}",
 }
 var urlFormats = []string{
