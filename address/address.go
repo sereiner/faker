@@ -1,6 +1,7 @@
 package address
 
 import (
+	"fmt"
 	"reflect"
 	"regexp"
 
@@ -24,7 +25,19 @@ type IAddress interface {
 	Longitude() float32
 }
 
+type P struct {
+	name string
+}
+
+func (p *P) Hello() {
+	fmt.Println("hello")
+}
+
 type Address struct {
+}
+
+func (a *Address) Hello() {
+	fmt.Println("hello222")
 }
 
 //CityPrefix 城市前缀

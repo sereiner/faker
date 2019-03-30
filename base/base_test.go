@@ -20,10 +20,11 @@ func TestNumberBetween(t *testing.T) {
 		want int
 	}{
 		// TODO: Add test cases.
+		{name: "1", args: args{min: 0, max: 10}, want: 5},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := NumberBetween(tt.args.min, tt.args.max); got != tt.want {
+			if got := NumberBetween(tt.args.min, tt.args.max); got > 10 {
 				t.Errorf("NumberBetween() = %v, want %v", got, tt.want)
 			}
 		})

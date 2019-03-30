@@ -58,7 +58,7 @@ func FreeEmailDomain() string {
 }
 
 func DomainName() string {
-
+	return base.RandomElement(domainName)
 }
 
 // Tld
